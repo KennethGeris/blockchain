@@ -35,7 +35,6 @@ class Blockchain {
      * @returns {Object}
      */
     obtainLatestBlock() {
-        console.log(this.blockchain.length);
         return this.blockchain[this.blockchain.length - 1];
     }
 

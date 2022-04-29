@@ -9,8 +9,7 @@ let chain = new Blockchain();
 chain.addNewBlock(a);
 chain.addNewBlock(b);
 
-console.log(chain);
-
 const validity = chain.validateBlockChain();
 
 console.log(validity);
+console.log(JSON.stringify(chain, null, 4));
