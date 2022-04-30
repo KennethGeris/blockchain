@@ -1,7 +1,7 @@
 
-const expect = require('chai').expect;
-const { Block } = require('../block');
-const { Blockchain } = require('../blockchain');
+import { expect } from 'chai';
+import Block from '../block.js';
+import Blockchain from '../blockchain.js';
 
 describe('Blockchain Class', () => {
     it('Initialize a Blockchain', () => {

@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const { Block } = require('../block');
+import { expect } from 'chai';
+import Block from '../block.js';
 
 describe('Block Class', () => {
     it('Create a new Block', () => {
