@@ -1,9 +1,9 @@
-const crypto = require('crypto');
+import { createHash } from 'crypto';
 
 /**
  * Block Class
  */
-class Block {
+export default class Block {
 
     /**
      * Create a new Block
@@ -24,10 +24,6 @@ class Block {
     computeHash() {
         let strBlock = this.prevHash + this.timestamp + JSON.stringify(this.data);
 
-        return crypto.createHash('sha256').update(strBlock).digest('hex');
+        return createHash('sha256').update(strBlock).digest('hex');
     }
-}
-
-module.exports = {
-    Block
 }

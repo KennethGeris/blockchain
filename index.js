@@ -1,10 +1,9 @@
-const { Block } = require('./block');
-const { Blockchain } = require('./blockChain');
+import Block from './block.js';
+import Blockchain from './blockchain.js';
 
+const chain = new Blockchain();
 let a = new Block("first block");
 let b = new Block("second block");
-
-let chain = new Blockchain();
 
 chain.addNewBlock(a);
 chain.addNewBlock(b);

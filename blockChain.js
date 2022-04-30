@@ -1,15 +1,15 @@
-const { Block } = require('./block');
+import Block from './block.js';
 
 /**
  * Blockchain class
  */
-class Blockchain {
+export default class Blockchain {
 
     /**
      * Create a new BlockChain by initializing the chain starting with a Genesis Block 
      */
     constructor() {
-        this.blockchain = [this.startGenesisBlock()];
+        this.blockchain = [this.createGenesisBlock()];
     }
 
     /**
@@ -26,8 +26,8 @@ class Blockchain {
      * Create a Genesis Block to start
      * @returns {Object}
      */
-    startGenesisBlock() {
-        return new Block("genesis block", 0);
+    createGenesisBlock() {
+        return new Block("Genesis Block", 0);
     }
 
     /**
@@ -43,16 +43,16 @@ class Blockchain {
      * @returns {Boolean}
      */
     validateBlockChain() {
-        for (let i = 1; i < this.blockchain.length; i++) { // Start after the Genesis Block
+        for (let i = 1; i < this.blockchain.length; i++) {
             const currBlock = this.blockchain[i];
             const prevBlock = this.blockchain[i - 1];
 
-            // Is the hash correctly computed?
+            // Check if hash is correctly computed
             if (currBlock.hash !== currBlock.computeHash()) {
                 return false;
             }
 
-            // Is the hash matching the previous Block's hash
+            // Check previous Block's hash
             if (currBlock.prevHash !== prevBlock.hash) {
                 return false;
             }
@@ -61,7 +61,3 @@ class Blockchain {
         return true;
     }
 }
-
-module.exports = {
-    Blockchain
-};
