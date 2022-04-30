@@ -1,9 +1,9 @@
-import Block from './block.js';
+import { Block } from './block.js';
 
 /**
  * Blockchain class
  */
-export default class Blockchain {
+export class Blockchain {
 
     /**
      * Create a new BlockChain by initializing the chain starting with a Genesis Block 

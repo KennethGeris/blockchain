@@ -3,7 +3,7 @@ import { createHash } from 'crypto';
 /**
  * Block Class
  */
-export default class Block {
+export class Block {
 
     /**
      * Create a new Block
