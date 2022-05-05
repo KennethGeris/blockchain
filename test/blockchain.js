@@ -2,6 +2,7 @@
 import { expect } from 'chai';
 import { Block } from '../block.js';
 import { Blockchain } from '../blockchain.js';
+process.env.DIFFICULTY = 5;
 
 describe('Blockchain Class', () => {
     it('Initialize a Blockchain', () => {
@@ -44,4 +45,16 @@ describe('Blockchain Class', () => {
         expect(chain.validateBlockChain()).to.be.true;
     });
 
+    it('Tempered Blockchain', () => {
+        const chain = new Blockchain();
+
+        let b1 = new Block("Second Block");
+        let b2 = new Block("Third Block");
+
+        chain.addNewBlock(b1);
+        chain.blockchain[1].data = "Tempered Block";
+        chain.addNewBlock(b2);
+
+        expect(chain.validateBlockChain()).to.be.false;
+    });
 });
