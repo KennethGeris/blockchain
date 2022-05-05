@@ -6,10 +6,11 @@ import { Block } from './block.js';
 export class Blockchain {
 
     /**
-     * Create a new BlockChain by initializing the chain starting with a Genesis Block 
+     * Create a new BlockChain by initializing the chain starting with a Genesis Block and set the difficulty 
      */
     constructor() {
         this.blockchain = [this.createGenesisBlock()];
+        this.difficulty = Number(process.env.DIFFICULTY);
     }
 
     /**
@@ -18,7 +19,7 @@ export class Blockchain {
      */
     addNewBlock(newBlock) {
         newBlock.prevHash = this.obtainLatestBlock().hash;
-        newBlock.hash = newBlock.computeHash();
+        newBlock.mineBlock(this.difficulty);
         this.blockchain.push(newBlock);
     }
 
@@ -49,6 +50,7 @@ export class Blockchain {
 
             // Check if hash is correctly computed
             if (currBlock.hash !== currBlock.computeHash()) {
+                console.log(`Tempered Block found: ${currBlock.hash}`);
                 return false;
             }
 

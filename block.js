@@ -15,6 +15,7 @@ export class Block {
         this.data = data;
         this.prevHash = prevHash;
         this.hash = this.computeHash();
+        this.nonce = 0;
     }
 
     /**
@@ -22,8 +23,20 @@ export class Block {
      * @returns {string}
      */
     computeHash() {
-        let strBlock = this.prevHash + this.timestamp + JSON.stringify(this.data);
+        let strBlock = this.prevHash + this.timestamp + JSON.stringify(this.data) + this.nonce;
 
         return createHash('sha256').update(strBlock).digest('hex');
+    }
+
+    /**
+     * Mine the new Block
+     * @param {Object} newBlock 
+     */
+    mineBlock(difficulty) {
+        while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
+            this.nonce++;
+            this.hash = this.computeHash();
+        }
+        console.log(`Block mined, nonce: ${this.nonce}, hash: "${this.hash}`);
     }
 }
