@@ -6,11 +6,12 @@ import { createHash } from 'crypto';
 export class Block {
 
     /**
-     * Create a new Block
-     * @param {*} data 
-     * @param {string} prevHash 
-     */
+    * Create a new Block
+    * @param {*} data 
+    * @param {string} prevHash 
+    */
     constructor(data, prevHash) {
+        this.index = 0;
         this.timestamp = Date.now();
         this.data = data;
         this.prevHash = prevHash;
@@ -19,24 +20,26 @@ export class Block {
     }
 
     /**
-     * Compute Block's hash
-     * @returns {string}
-     */
+    * Compute Block's hash
+    * @returns {string}
+    */
     computeHash() {
-        let strBlock = this.prevHash + this.timestamp + JSON.stringify(this.data) + this.nonce;
+        const strBlock = this.index + this.prevHash + this.timestamp + JSON.stringify(this.data) + this.nonce;
 
         return createHash('sha256').update(strBlock).digest('hex');
     }
 
     /**
-     * Mine the new Block
-     * @param {Object} newBlock 
-     */
+    * Mine the new Block
+    * @param {Object} newBlock
+    * @param {Object} newBlock 
+    * @param {Object} newBlock
+    */
     mineBlock(difficulty) {
-        while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
+        while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join('0')) {
             this.nonce++;
             this.hash = this.computeHash();
         }
-        console.log(`Block mined, nonce: ${this.nonce}, hash: "${this.hash}`);
+        console.log(`Block mined, nonce: ${this.nonce}, hash: "${this.hash}`)
     }
 }
