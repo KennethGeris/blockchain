@@ -35,7 +35,7 @@ export class Blockchain {
     * @returns {Object}
     */
     createGenesisBlock() {
-        return new Block("Genesis Block", 0);
+        return new Block('Genesis Block', 0);
     }
 
     /**

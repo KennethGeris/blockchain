@@ -31,15 +31,15 @@ export class Block {
 
     /**
     * Mine the new Block
-    * @param {Object} newBlock
-    * @param {Object} newBlock 
-    * @param {Object} newBlock
+    * @param {Integer} difficulty
+    * @returns {Object}
     */
     mineBlock(difficulty) {
         while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join('0')) {
             this.nonce++;
+            console.log('Mining Block...')
             this.hash = this.computeHash();
         }
-        console.log(`Block mined, nonce: ${this.nonce}, hash: "${this.hash}`)
+        console.log(`Block mined, nonce: ${this.nonce}, hash: ${this.hash}`)
     }
 }
